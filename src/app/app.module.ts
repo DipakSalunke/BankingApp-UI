@@ -12,14 +12,19 @@ import { HomeComponent } from './components/home/home.component';
 import { IndexComponent } from './components/index/index.component';
 import { NoPageComponent } from './components/no-page/no-page.component';
 import { routes } from './app.router';
-import { SignupUserComponent } from './components/index/signup-user/signup-user.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {MatToolbarModule} from '@angular/material/toolbar'; 
+import { LoanService } from './services/loan.service';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     IndexComponent,
     NoPageComponent,
+    
+
+    
   ],
   imports: [
     BrowserModule,
@@ -28,9 +33,13 @@ import { SignupUserComponent } from './components/index/signup-user/signup-user.
     IndexModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    BrowserAnimationsModule,
+    MatToolbarModule,
+
+
   ],
-  providers: [],
+  providers: [LoanService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

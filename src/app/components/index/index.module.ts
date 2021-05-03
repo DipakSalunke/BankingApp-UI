@@ -6,13 +6,13 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SignupUserComponent } from './signup-user/signup-user.component';
-
 @NgModule({
   declarations: [LoginComponent, SignupComponent, ForgotPasswordComponent, SignupUserComponent],
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+
   ]
 })
 export class IndexModule { }

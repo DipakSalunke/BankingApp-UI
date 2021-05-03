@@ -6,13 +6,14 @@ import { SettingsComponent } from './settings/settings.component';
 import { AccountComponent } from './account/account.component';
 import { AccounthomeComponent } from './accounthome/accounthome.component';
 import { LoanComponent } from './loan/loan.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [SettingsComponent, AccountComponent, AccounthomeComponent, LoanComponent],
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class HomeModule { }

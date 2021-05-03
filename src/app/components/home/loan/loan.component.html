@@ -1,3 +1,67 @@
-<p>
-  loan works!
-</p>
+<div class="col-md-4 col-md-offset-4">
+  <div class="alert alert-danger" *ngIf="errorMsg?.length > 0">
+    <strong>{{ errorMsg }}</strong>
+  </div>
+  <div class="form-group">
+    <label for="acc_id">Account ID</label>
+    <input
+      required
+      #acc_id="ngModel"
+      type="text"
+      class="form-control"
+      id="acc_id"
+      [(ngModel)]="loanData.acc_id"
+    />
+    <div *ngIf="acc_id.touched" class="alert alert-danger">
+      <div *ngIf="acc_id.errors.required">acccount id is required.</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="loan_type">loan type</label>
+    <select
+      class="form-control"
+      id="loan_type"
+      [(ngModel)]="loanData.loan_type"
+    ><option value="">--Please choose an option--</option>
+    <option value="dog">educational</option>
+    <option value="cat">personal</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="loan_amt">loan amount</label>
+    <input
+      type="text"
+      class="form-control"
+      id="loan_amt"
+      [(ngModel)]="loanData.loan_amt"
+    />
+  </div>
+  <div class="form-group">
+    <label for="rate_of_int">rate of interest</label>
+    <input
+      type="text"
+      class="form-control"
+      id="rate_of_int"
+      [(ngModel)]="loanData.rate_of_int"
+    />
+  </div>
+  <div class="form-group">
+    <label for="duration">Duration</label>
+    <input
+      type="text"
+      class="form-control"
+      id="duration"
+      [(ngModel)]="loanData.duration"
+    />
+  </div>
+
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="loanApplyAction()"
+    style="width: 145px; float: right; height: 45px"
+  >
+    Apply
+  </button>
+</div>

@@ -1,3 +1,48 @@
-<p>
-  account works!
-</p>
+<div class="col-md-4 col-md-offset-4">
+  <div class="alert alert-danger" *ngIf = "errorMsg?.length > 0">
+    <strong>{{errorMsg}}</strong>
+  </div>
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" class="form-control" id="username" [(ngModel)] = "signupData.username">
+  </div>
+  <div class="form-group">
+    <label for="name">name:</label>
+    <input type="text" class="form-control" min="5" id="name" [(ngModel)] = "signupData.name">
+  </div>
+  <div class="form-group">
+    <label for="email">email:</label>
+    <input type="email" class="form-control" id="email" [(ngModel)] = "signupData.email">
+  </div>
+  <div class="form-group">
+    <label for="dob">Date of Birth:</label>
+    <input type="date" class="form-control" id="dob" [(ngModel)] = "signupData.dob">
+  </div> 
+  <div class="form-group">
+    <label for="address">Address</label>
+    <input type="address" class="form-control" id="address" [(ngModel)] = "signupData.address">
+  </div>
+  <div class="form-group">
+    <label for="state">State</label>
+    <input type="text" class="form-control" id="state" [(ngModel)] = "signupData.state">
+  </div>
+   <div class="form-group">
+    <label for="country">Country:</label>
+    <input type="text" class="form-control" id="country" [(ngModel)] = "signupData.country">
+  </div>
+  <div class="form-group">
+    <label for="pan">pan</label>
+    <input type="text" class="form-control" id="pan" [(ngModel)] = "signupData.pan">
+  </div>
+  <div class="form-group">
+    <label for="contact">Phone No:</label>
+    <input type="contact" class="form-control" id="contact" [(ngModel)] = "signupData.contact">
+  </div>
+  <div class="form-group">
+    <label for="acc_type">acc type</label>
+    <input type="text" class="form-control" id="acc_type" [(ngModel)] = "signupData.acc_type">
+  </div>
+ 
+
+  <button type="button" class="btn btn-primary" (click) = "signupAction()" style="width: 145px; float: right; height: 45px;">update details</button>
+</div>
