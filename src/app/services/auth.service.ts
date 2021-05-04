@@ -14,8 +14,9 @@ export class AuthService {
   }
 
   loginSession(loginResponse) {
+    console.log(loginResponse.body.access_token);
     sessionStorage.setItem("username", loginResponse.body.username);
-    sessionStorage.setItem("token", loginResponse.headers.get('access_token'));
+    sessionStorage.setItem("token", loginResponse.body.access_token);
   }
 
   logoutSession() {

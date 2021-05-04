@@ -1,3 +1,4 @@
+import { SignupComponent } from './accounthome/signup/signup.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -8,7 +9,7 @@ import { AccounthomeComponent } from './accounthome/accounthome.component';
 import { LoanComponent } from './loan/loan.component';
 import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [SettingsComponent, AccountComponent, AccounthomeComponent, LoanComponent],
+  declarations: [SettingsComponent, AccountComponent, AccounthomeComponent, LoanComponent,SignupComponent],
   imports: [
     CommonModule,
     RouterModule,

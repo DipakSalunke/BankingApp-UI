@@ -1,9 +1,9 @@
 import { UserService } from "./../../../services/user.service";
 import { AuthService } from "./../../../services/auth.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit} from "@angular/core";
 import { Router } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
-
+import {NgForm} from '@angular/forms';
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
     password: ""
   };
   errorMsg = "";
+
   constructor(
     private userService: UserService,
     private authService: AuthService,
@@ -24,19 +25,23 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   loginAction() {
+    console.log(this.loginData);
     this.userService.login(this.loginData).subscribe(
       loginResponse => {
+
         this.errorMsg = "";
         this.authService.loginSession(loginResponse);
         this.router.navigate([""]);
       },
       (httpErr: HttpErrorResponse) => {
-        if (httpErr.status === 400) {
-          this.errorMsg = httpErr.error.message;
+        if (httpErr.status === 401) {
+          this.errorMsg = httpErr.error["message"];
+          ;
         }
       }
     );
   }
+
 
 
 }

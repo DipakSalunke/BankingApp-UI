@@ -8,17 +8,18 @@ import { Router } from "@angular/router";
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
+  account = JSON.parse( sessionStorage.getItem("accountInfo"));
   signupData = {
-    username: "",
-    name: "",
-    address: "",
-    state: "",
-    country: "",
-    email: "",
-    pan: "",
-    contact: "",
-    dob: "",
-    acc_type: "",
+    username:this.account.username,
+    name:this.account.name,
+    address:this.account.address,
+    state: this.account.state,
+    country: this.account.country,
+    email: this.account.email,
+    pan: this.account.pan,
+    contact: this.account.contact,
+    dob: this.account.dob,
+    acc_type: this.account.acc_type,
   };
 
   errorMsg = "";

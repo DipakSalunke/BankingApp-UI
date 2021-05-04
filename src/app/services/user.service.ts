@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,10 +13,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   register(signupData){
-    console.log(sessionStorage.getItem("token"))
+    console.log(sessionStorage);
+    alert(sessionStorage.getItem("token"))
     let headers = new HttpHeaders()
     
-    .set("Authorization","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE5Njk2MzQ1LCJqdGkiOiI2YTdhYmIyMC1mZDRmLTRkNWItYTQyZi1jOGQ0MzAyZTM0NjQiLCJuYmYiOjE2MTk2OTYzNDUsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOjEsImV4cCI6MTYxOTY5OTk0NSwiaXNfYWRtaW4iOnRydWV9.b6ziuMl6eU2VZ4u2JXeBl65e3_dtRhGe-GZyyhwz7DA")
+    .set("Authorization","Bearer "+sessionStorage.getItem("token"))
       .set("Content-Type", "application/json")
       .set("Accept", "application/json");
     return this.http.put(this.baseaUrl , JSON.stringify(signupData), {headers});

@@ -1,3 +1,4 @@
+import { SignupComponent } from './accounthome/signup/signup.component';
 import { AccounthomeComponent } from './accounthome/accounthome.component';
 import { AuthGuard } from './../../guards/auth.guard';
 import { SettingsComponent } from "./settings/settings.component";
@@ -15,7 +16,8 @@ export const HomeRoutes: Route[] = [
       { path: "", component: AccounthomeComponent },
       { path: "account", component: AccountComponent },
       { path: "loan", component: LoanComponent },
-      { path: "settings", component: SettingsComponent }
+      { path: "settings", component: SettingsComponent },
+      { path: "signup", component: SignupComponent }
     ]
   }
 ];

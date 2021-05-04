@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 export class LoanComponent implements OnInit {
 
   loanData = {
-    acc_id:"",
+    acc_id:JSON.parse( sessionStorage.getItem("accountInfo")).id,
     loan_type:"",
     loan_amt:"",
     rate_of_int:"",

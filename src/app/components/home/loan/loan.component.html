@@ -1,67 +1,204 @@
-<div class="col-md-4 col-md-offset-4">
-  <div class="alert alert-danger" *ngIf="errorMsg?.length > 0">
+<div class="col-md-6 col-md-offset-3">
+  <div class="alert alert-success" *ngIf="errorMsg?.length > 0">
     <strong>{{ errorMsg }}</strong>
   </div>
-  <div class="form-group">
+  <!-- <div class="form-group">
     <label for="acc_id">Account ID</label>
-    <input
-      required
-      #acc_id="ngModel"
-      type="text"
-      class="form-control"
-      id="acc_id"
-      [(ngModel)]="loanData.acc_id"
-    />
-    <div *ngIf="acc_id.touched" class="alert alert-danger">
+    <input required #acc_id="ngModel" type="text" class="form-control" id="acc_id" [(ngModel)]="loanData.acc_id" />
+    <div *ngIf="acc_id.invalid && (acc_id.dirty || acc_id.touched)" class="alert alert-danger">
       <div *ngIf="acc_id.errors.required">acccount id is required.</div>
     </div>
-  </div>
+  </div>-->
   <div class="form-group">
     <label for="loan_type">loan type</label>
-    <select
-      class="form-control"
-      id="loan_type"
-      [(ngModel)]="loanData.loan_type"
-    ><option value="">--Please choose an option--</option>
-    <option value="dog">educational</option>
-    <option value="cat">personal</option>
+    <select required #loan_type="ngModel" class="form-control w-25 p-3" id="loan_type" [(ngModel)]="loanData.loan_type">
+      <option value="">--Please choose an option--</option>
+      <option value="educational">educational</option>
+      <option value="personal">personal</option>
     </select>
+  </div>
+  <div *ngIf="loan_type.invalid && (acc_id.dirty || acc_id.touched)" class="alert alert-danger">
+    <div *ngIf="loan_type.errors.required">loan type is required.</div>
+  </div>
+  <div *ngIf="loan_type.value === 'educational'">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="course_fee">Course Fee</label>
+        <input required #course_fee="ngModel" type="text" class="form-control" id="course_fee"
+          [(ngModel)]="loanData.course_fee" />
+        <div *ngIf="course_fee.invalid && (course_fee.dirty || course_fee.touched)" class="alert alert-danger">
+          <div *ngIf="course_fee.errors.required">course fee is required.</div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="course">Course</label>
+        <input required #course="ngModel" type="text" class="form-control" id="course" [(ngModel)]="loanData.course" />
+        <div *ngIf="course.invalid && (course.dirty || course.touched)" class="alert alert-danger">
+          <div *ngIf="course_fee.errors.required">course is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="fatherName">Father's Name</label>
+        <input required #fatherName="ngModel" type="text" class="form-control" id="fatherName"
+          [(ngModel)]="loanData.fatherName" />
+        <div *ngIf="fatherName.invalid && (fatherName.dirty || fatherName.touched)" class="alert alert-danger">
+          <div *ngIf="fatherName.errors.required">
+            father's Name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="fatherOcc">Father's Occupation</label>
+        <input required #fatherOcc="ngModel" type="text" class="form-control" id="fatherOcc"
+          [(ngModel)]="loanData.fatherOcc" />
+        <div *ngIf="fatherOcc.invalid && (fatherOcc.dirty || fatherOcc.touched)" class="alert alert-danger">
+          <div *ngIf="fatherOcc.errors.required">
+            father's Occupation is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="fatherExp">Father’s Total Experience</label>
+        <input required #fatherExp="ngModel" type="text" class="form-control" id="fatherExp"
+          [(ngModel)]="loanData.fatherExp" />
+        <div *ngIf="fatherExp.invalid && (fatherExp.dirty || fatherExp.touched)" class="alert alert-danger">
+          <div *ngIf="fatherExp.errors.required">
+            Father’s Total Experience is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="currExp">Father’s Exp with Current company</label>
+        <input required #currExp="ngModel" type="text" class="form-control" id="currExp"
+          [(ngModel)]="loanData.currExp" />
+        <div *ngIf="currExp.invalid && (currExp.dirty || currExp.touched)" class="alert alert-danger">
+          <div *ngIf="currExp.errors.required">
+            Father’s Exp with Current company is required.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="ration">Ration Card No</label>
+        <input required #ration="ngModel" type="text" class="form-control" id="ration" [(ngModel)]="loanData.ration" />
+        <div *ngIf="ration.invalid && (ration.dirty || ration.touched)" class="alert alert-danger">
+          <div *ngIf="ration.errors.required">Ration Card No is required.</div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="income">Annual Income</label>
+        <input required #income="ngModel" type="text" class="form-control" id="income" [(ngModel)]="loanData.income" />
+        <div *ngIf="income.invalid && (income.dirty || income.touched)" class="alert alert-danger">
+          <div *ngIf="income.errors.required">Annual Income is required.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loan_type.value === 'personal'">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="AnnualIncome">Annual Income</label>
+        <input required #AnnualIncome="ngModel" type="text" class="form-control" id="AnnualIncome"
+          [(ngModel)]="loanData.AnnualIncome" />
+        <div *ngIf="
+            AnnualIncome.invalid && (AnnulIncome.dirty || AnnualIncome.touched)
+          " class="alert alert-danger">
+          <div *ngIf="AnnualIncome.errors.required">
+            Annual Income is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="companyName">Company Name</label>
+        <input required #companyName="ngModel" type="text" class="form-control" id="companyName"
+          [(ngModel)]="loanData.companyName" />
+        <div *ngIf="
+            companyName.invalid && (companyName.dirty || companyName.touched)
+          " class="alert alert-danger">
+          <div *ngIf="companyName.errors.required">
+            Company Name is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="designation">Designation</label>
+        <input required #designation="ngModel" type="text" class="form-control" id="designation"
+          [(ngModel)]="loanData.designation" />
+        <div *ngIf="
+            designation.invalid && (designation.dirty || designation.touched)
+          " class="alert alert-danger">
+          <div *ngIf="designation.errors.required">
+            Designation is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="totalExp">Total Exp</label>
+        <input required #totalExp="ngModel" type="text" class="form-control" id="totalExp"
+          [(ngModel)]="loanData.totalExp" />
+        <div *ngIf="totalExp.invalid && (totalExp.dirty || totalExp.touched)" class="alert alert-danger">
+          <div *ngIf="totalExp.errors.required">Total Exp is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="CurrentExp">Exp with Current company</label>
+      <input required #CurrentExp="ngModel" type="text" class="form-control" id="CurrentExp"
+        [(ngModel)]="loanData.CurrentExp" />
+      <div *ngIf="CurrentExp.invalid && (CurrentExp.dirty || CurrentExp.touched)" class="alert alert-danger">
+        <div *ngIf="CurrentExp.errors.required">
+          Exp with Current company is required.
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="form-group">
     <label for="loan_amt">loan amount</label>
-    <input
-      type="text"
-      class="form-control"
-      id="loan_amt"
-      [(ngModel)]="loanData.loan_amt"
-    />
+    <input required #loan_amt="ngModel" type="text" class="form-control" id="loan_amt"
+      [(ngModel)]="loanData.loan_amt" />
+
+    <div *ngIf="loan_amt.invalid && (loan_amt.dirty || loan_amt.touched)" class="alert alert-danger">
+      <div *ngIf="loan_amt.errors.required">loan amount is required.</div>
+    </div>
   </div>
   <div class="form-group">
     <label for="rate_of_int">rate of interest</label>
-    <input
-      type="text"
-      class="form-control"
-      id="rate_of_int"
-      [(ngModel)]="loanData.rate_of_int"
-    />
+    <input required #rate_of_int="ngModel" type="text" class="form-control" id="rate_of_int"
+      [(ngModel)]="loanData.rate_of_int" />
+
+    <div *ngIf="rate_of_int.invalid && (rate_of_int.dirty || rate_of_int.touched)" class="alert alert-danger">
+      <div *ngIf="rate_of_int.errors.required">
+        rate of interest is required.
+      </div>
+    </div>
   </div>
   <div class="form-group">
     <label for="duration">Duration</label>
-    <input
-      type="text"
-      class="form-control"
-      id="duration"
-      [(ngModel)]="loanData.duration"
-    />
+    <input required #duration="ngModel" type="text" class="form-control" id="duration"
+      [(ngModel)]="loanData.duration" />
+
+    <div *ngIf="duration.invalid && (duration.dirty || duration.touched)" class="alert alert-danger">
+      <div *ngIf="duration.errors.required">Duration is required.</div>
+    </div>
   </div>
 
-  <button
-    type="button"
-    class="btn btn-primary"
-    (click)="loanApplyAction()"
-    style="width: 145px; float: right; height: 45px"
-  >
+  <button type="button" class="btn btn-primary" (click)="loanApplyAction()"
+    style="width: 145px; float: right; height: 45px">
     Apply
   </button>
 </div>

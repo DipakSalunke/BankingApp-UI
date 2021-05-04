@@ -2,10 +2,10 @@
   <div class="alert alert-danger" *ngIf = "errorMsg?.length > 0">
     <strong>{{errorMsg}}</strong>
   </div>
-  <div class="form-group">
+ <!-- <div class="form-group">
     <label for="username">Username:</label>
     <input type="text" class="form-control" id="username" [(ngModel)] = "signupData.username">
-  </div>
+  </div>-->
   <div class="form-group">
     <label for="name">name:</label>
     <input type="text" class="form-control" min="5" id="name" [(ngModel)] = "signupData.name">
