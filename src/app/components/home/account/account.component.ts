@@ -39,7 +39,7 @@ export class AccountComponent implements OnInit {
         alert(signupResult.message);
         if (this.failed == false) {
           this.errorMsg = "account creation failed ! Try again !";
-          this.router.navigate(["signup"]);
+         // this.router.navigate(["signup"]);
         }
         this.errorMsg = "account created successfully ! login now";
         this.router.navigate(["login"]);
