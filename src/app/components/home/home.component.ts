@@ -17,20 +17,11 @@ export class HomeComponent implements OnInit {
     private userService: UserService,
     private accountService: AccountService
   ) {
-    this.retrieveFullName();
-  }
 
+  }
+ username = sessionStorage.getItem("username");
   ngOnInit() {}
 
-  retrieveFullName() {
-    if (!this.fullname) {
-      let username = sessionStorage.getItem("username");
-      this.userService.getUserInfoByUsername(username).subscribe((res: any) => {
-        this.fullname = res[0].firstname + " " + res[0].lastname;
-        sessionStorage.setItem("fullname", this.fullname);
-      });
-    }
-  }
   logoutAction() {
     //let accountNo = JSON.parse(sessionStorage.getItem("accountInfo")).accountNo;
    // this.accountService.updateLastActiveStatus(accountNo).subscribe(res => {});

@@ -1,48 +1,128 @@
 <div class="col-md-4 col-md-offset-4">
-  <div class="alert alert-danger" *ngIf = "errorMsg?.length > 0">
+  <div class="alert alert-danger" *ngIf="errorMsg?.length > 0">
     <strong>{{errorMsg}}</strong>
   </div>
- <!-- <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" class="form-control" id="username" [(ngModel)] = "signupData.username">
-  </div> -->
-  <div class="form-group">
-    <label for="name">name:</label>
-    <input type="text" class="form-control" min="5" id="name" [(ngModel)] = "signupData.name">
-  </div>
-  <div class="form-group">
-    <label for="email">email:</label>
-    <input type="email" class="form-control" id="email" [(ngModel)] = "signupData.email">
-  </div>
-  <div class="form-group">
-    <label for="dob">Date of Birth:</label>
-    <input type="date" class="form-control" id="dob" [(ngModel)] = "signupData.dob">
-  </div>
-  <div class="form-group">
-    <label for="address">Address</label>
-    <input type="address" class="form-control" id="address" [(ngModel)] = "signupData.address">
-  </div>
-  <div class="form-group">
-    <label for="state">State</label>
-    <input type="text" class="form-control" id="state" [(ngModel)] = "signupData.state">
-  </div>
-   <div class="form-group">
-    <label for="country">Country:</label>
-    <input type="text" class="form-control" id="country" [(ngModel)] = "signupData.country">
-  </div>
-  <div class="form-group">
-    <label for="pan">pan</label>
-    <input type="text" class="form-control" id="pan" [(ngModel)] = "signupData.pan">
-  </div>
-  <div class="form-group">
-    <label for="contact">Phone No:</label>
-    <input type="contact" class="form-control" id="contact" [(ngModel)] = "signupData.contact">
-  </div>
-  <div class="form-group">
-    <label for="acc_type">acc type</label>
-    <input type="text" class="form-control" id="acc_type" [(ngModel)] = "signupData.acc_type">
+
+  <div class="alert alert-success" *ngIf="succMsg?.length > 0">
+    <strong>{{succMsg}}</strong>
   </div>
 
+  <form #ff="ngForm" (ngSubmit)="signupAction()">
+    <div class="form-group">
+      <label for="name">name:</label>
+      <input type="text" required pattern="^[a-zA-Z ]*" ngModel #name="ngModel" class="form-control" min="5" name="name"
+        [(ngModel)]="signupData.name">
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+        <div *ngIf="name.errors.required">name is required.</div>
+        <div *ngIf="name.errors.pattern">name should contain only alphabets and spaces</div>
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="Gender">Gender</label>
+        <div>
+          <select required ngModel #gender="ngModel" class="form-control w-25 p-3" name="gender"
+            [(ngModel)]="signupData.gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="others">Others</option>
+          </select>
+        </div>
+        <div *ngIf="gender.invalid && (gender.dirty || gender.touched)" class="alert alert-danger">
+          <div *ngIf="gender.errors.required">gender is required.</div>
+        </div>
+      </div>
 
-  <button type="button" class="btn btn-primary" (click) = "signupAction()" style="width: 145px; float: right; height: 45px;">Create Account</button>
+      <div class="form-group">
+        <label for="email">email:</label>
+        <input type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" ngModel #email="ngModel"
+          class="form-control" name="email" [(ngModel)]="signupData.email">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+          <div *ngIf="email.errors.required">email is required.</div>
+          <div *ngIf="email.errors.pattern">provide a valid email eg. abc@gmail.com</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" required ngModel #dob="ngModel" class="form-control" name="dob" min="{{mindate}}"
+          max="{{maxdate}}" [(ngModel)]="signupData.dob">
+        <div *ngIf="dob.invalid && (dob.dirty || dob.touched)" class="alert alert-danger">
+          <div *ngIf="dob.errors.required">dob is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="address" required ngModel #address="ngModel" class="form-control" name="address"
+          [(ngModel)]="signupData.address">
+        <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+          <div *ngIf="address.errors.required">address is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="state">State</label>
+        <input type="text" required ngModel #state="ngModel" class="form-control" name="state"
+          [(ngModel)]="signupData.state">
+        <div *ngIf="state.invalid && (state.dirty || state.touched)" class="alert alert-danger">
+          <div *ngIf="state.errors.required">state is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="country">Country:</label>
+        <input type="text" required ngModel #country="ngModel" class="form-control" name="country"
+          [(ngModel)]="signupData.country">
+        <div *ngIf="country.invalid && (country.dirty || country.touched)" class="alert alert-danger">
+          <div *ngIf="country.errors.required">country is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="pan">pan</label>
+        <input type="text" required pattern="[A-Z]{3}[ABCFGHLJPTF]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}" ngModel #pan="ngModel"
+          class="form-control" name="pan" [(ngModel)]="signupData.pan">
+        <div *ngIf="pan.invalid && (pan.dirty || pan.touched)" class="alert alert-danger">
+          <div *ngIf="pan.errors.required">pan is required.</div>
+          <div *ngIf="pan.errors.pattern">enter valid pan number eg. AAAPL1234C</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="contact">Phone No:</label>
+        <input type="contact" required pattern="^\d{10}" ngModel #contact="ngModel" class="form-control" name="contact"
+          [(ngModel)]="signupData.contact">
+        <div *ngIf="contact.invalid && (contact.dirty || contact.touched)" class="alert alert-danger">
+          <div *ngIf="contact.errors.required">contact is required.</div>
+          <div *ngIf="contact.errors.pattern">Contact number should be 10 digits</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="acc_type">account type</label>
+
+        <select required ngModel #acc_type="ngModel" class="form-control w-25 p-3" name="acc_type"
+          [(ngModel)]="signupData.acc_type">
+          <option value="">--Please choose account type--</option>
+          <option value="savings">Savings</option>
+          <option value="salary">Salary</option>
+        </select>
+
+        <div *ngIf="acc_type.invalid && (acc_type.dirty || acc_type.touched)" class="alert alert-danger">
+          <div *ngIf="acc_type.errors.required">account type is required.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="balance">Balance</label>
+        <div>
+          <select required ngModel #balance="ngModel" class="form-control w-25 p-3" name="balance"
+            [(ngModel)]="signupData.balance">
+
+            <option value="5000" *ngIf="acc_type.value ==='savings'" then selected>5000</option>
+            <option value="0" *ngIf="acc_type.value ==='salary'" then selected>0</option>
+          </select>
+
+          <div *ngIf="balance.invalid && (balance.dirty || balance.touched)" class="alert alert-danger">
+            <div *ngIf="balance.errors.required">balance is required.</div>
+          </div>
+        </div>
+
+      </div>
+      <button type="button" #ff="ngForm" [disabled]="!ff.form.valid" class="btn btn-primary"
+        style="width: 145px; float: right; height: 45px;" (click)="signupAction()">create account</button>
+  </form>
 </div>

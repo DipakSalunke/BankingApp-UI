@@ -10,12 +10,12 @@
       <li><a routerLink="/settings">Settings</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a style="color: bisque;">{{fullname}}</a></li>
+      <li><a style="color: rgb(194, 159, 117);">{{username}}</a></li>
       <li><a (click) = "logoutAction()"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
     </ul>
   </div>
 </nav>
 
-<div class="container-fluid">
+<div role="main" class="container-fluid">
   <router-outlet></router-outlet>
 </div>

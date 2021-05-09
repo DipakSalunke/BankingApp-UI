@@ -1,9 +1,9 @@
-import { UserService } from 'src/app/services/user.service';
+
 import { Component, OnInit } from "@angular/core";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { checkAndUpdateBinding } from "@angular/core/src/view/util";
-import { ValidationErrors, ValidatorFn, AbstractControl } from '@angular/forms';
+import * as moment from 'moment';
+import { AccountService } from 'src/app/services/account.service';
 @Component({
   selector: "app-signup",
   templateUrl: "./signup.component.html",
@@ -21,35 +21,29 @@ export class SignupComponent implements OnInit {
     contact: "",
     dob: "",
     acc_type: "",
+    gender:"",
+    balance:"",
   };
-
+  mindate = moment().subtract(96, "years").format("YYYY-MM-DD");
+  maxdate = moment().subtract(18, "years").format("YYYY-MM-DD");
   errorMsg = "";
+  succMsg="";
   failed = false;
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private accountService: AccountService, private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   signupAction() {
-    if (this.signupData.name.length) {
-      this.failed= true;
-      this.errorMsg = "name must be less than 10 characters";
-      this.router.navigate(["signup"]);
-    }
-    this.userService.register(this.signupData).subscribe(
+
+    this.accountService.register(this.signupData).subscribe(
       (signupResult: Signup) => {
-        alert(signupResult.message);
-        if (this.failed == false) {
-          this.errorMsg = "account creation failed ! Try again !";
-          this.router.navigate(["signup"]);
-        }
-        this.errorMsg = "account created successfully ! login now";
-        this.router.navigate(["login"]);
+        this.errorMsg="";
+        this.succMsg = "account created successfully ! You can now apply for loans in loans section !";
+
       },
       (httpErr: HttpErrorResponse) => {
-        if (httpErr.status === 400) {
           this.errorMsg = httpErr.error.message;
         }
-      }
     );
   }
 }
@@ -58,5 +52,5 @@ class Signup {
   message;
   messageCode;
   username;
-  constructor() {}
+  constructor() { }
 }
