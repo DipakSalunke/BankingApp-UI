@@ -4,7 +4,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { getTreeNoValidDataSourceError } from '@angular/cdk/tree';
 import { AuthService } from 'src/app/services/auth.service';
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 @Component({
   selector: 'app-loan',
   templateUrl: './loan.component.html',
@@ -12,8 +12,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoanComponent implements OnInit {
 
-  private loanData = {
-    acc_id: JSON.parse(sessionStorage.getItem("accountInfo")).id,
+  loanData = {
+    acc_id: "",
     loan_type: "",
     loan_amt: "",
     rate_of_int: "",
@@ -51,7 +51,7 @@ loanApplyAction() {
  }else{
   this.loanData = {...this.loanData,...this.educationData};
  }
-
+ this.loanData.acc_id = JSON.parse(sessionStorage.getItem("accountInfo")).id;
   this.loanService.apply(this.loanData).subscribe(
     (loanResult: Signup) => {
       this.succMsg = loanResult.message;

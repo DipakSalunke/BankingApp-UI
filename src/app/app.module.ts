@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HomeModule } from './components/home/home.module';
 import { IndexModule } from './components/index/index.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,7 +14,7 @@ import { NoPageComponent } from './components/no-page/no-page.component';
 import { routes } from './app.router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatToolbarModule} from '@angular/material/toolbar'; 
+import {MatToolbarModule} from '@angular/material/toolbar';
 import { LoanService } from './services/loan.service';
 @NgModule({
   declarations: [
@@ -22,9 +22,9 @@ import { LoanService } from './services/loan.service';
     HomeComponent,
     IndexComponent,
     NoPageComponent,
-    
 
-    
+
+
   ],
   imports: [
     BrowserModule,
@@ -33,6 +33,7 @@ import { LoanService } from './services/loan.service';
     IndexModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
     BrowserAnimationsModule,
     MatToolbarModule,
